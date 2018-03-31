@@ -4,8 +4,9 @@ const tokenConfig = require('./../config/token.config')
 
 var jwt = require('jwt-simple')
 
-const validateRequest = (reqProps, body) =>
-  reqProps.some(x => body[x] === undefined)
+const validateRequest = (reqProps, body) => {
+  return reqProps.some(x => body[x] === undefined)
+}
 
 const register = (req, res) => {
   const body = req.body
@@ -30,7 +31,8 @@ const register = (req, res) => {
     hashedPass: body.password
   })
     .then(user => {
-      res.status(200).send(user)
+      const token = jwt.encode(user.id, tokenConfig.jwtSecret)
+      res.status(200).json({ token }).end()
     })
     .catch(err => {
       res.status(404).send(err.message)
@@ -38,8 +40,6 @@ const register = (req, res) => {
 }
 
 const login = (req, res) => {
-
-
   User.findOne({ username: req.body.username }, (err, user) => {
     if (err) {
       return
