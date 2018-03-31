@@ -42,6 +42,7 @@ const register = (req, res) => {
 const login = (req, res) => {
   User.findOne({ username: req.body.username }, (err, user) => {
     if (err) {
+      res.status(404).json({ message: err }).end()
       return
     }
 

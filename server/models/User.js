@@ -8,15 +8,19 @@ const userSchema = new mongoose.Schema({
     unique: true
   },
   balance: {
-    type: mongoose.Schema.Types.Number,
+    type: mongoose.SchemaTypes.Number,
     default: 0
   },
+  organisations: {
+    type: mongoose.SchemaTypes.Array,
+    default: []
+  },
   salt: {
-    type: mongoose.Schema.Types.String,
+    type: mongoose.SchemaTypes.String,
     default: encrypt.generateSalt(),
     required: true
   },
-  hashedPass: { type: mongoose.Schema.Types.String, required: true }
+  hashedPass: { type: mongoose.SchemaTypes.String, required: true }
 })
 
 userSchema.methods.authenticate = password =>
