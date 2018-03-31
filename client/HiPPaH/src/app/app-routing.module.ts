@@ -35,11 +35,11 @@ const routes: Routes = [
 		component: ScannerComponent
 	},
 	{
-		path: 'transfer/:organizationId/:accountId',
+		path: 'transfer/:userId',
 		component: TransferMoneyComponent
 	},
 	{
-		path: 'confirm/:userId',
+		path: 'confirm/:organizationId/:accountId',
 		component: ConfirmPaymentComponent
 	},
 	{

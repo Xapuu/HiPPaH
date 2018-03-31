@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Scanner lib for qr codes.
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -34,6 +35,7 @@ import { TransferMoneyComponent } from './components/transfer-money/transfer-mon
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
+		ReactiveFormsModule,
 		ZXingScannerModule.forRoot(),
 	],
 	providers: [],
