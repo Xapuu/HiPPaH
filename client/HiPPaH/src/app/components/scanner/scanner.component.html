@@ -1,0 +1,6 @@
+<zxing-scanner #scanner
+    class="test-class"
+    [autofocusEnabled]="false"
+    [device]="selectedDevice"
+    (camerasFound)="handleFoundCameras($event)"
+    (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
