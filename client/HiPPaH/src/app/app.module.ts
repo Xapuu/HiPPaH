@@ -13,6 +13,7 @@ import { RegisterOrganizationComponent } from './components/register-organizatio
 import { ProfileComponent } from './components/profile/profile.component';
 import { ScannerComponent } from './components/scanner/scanner.component';
 import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-pa
 		RegisterOrganizationComponent,
 		ProfileComponent,
 		ScannerComponent,
-		ConfirmPaymentComponent
+		ConfirmPaymentComponent,
+		HomeComponent
 	],
 	imports: [
 		BrowserModule,

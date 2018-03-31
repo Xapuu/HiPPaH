@@ -6,8 +6,13 @@ import { RegisterOrganizationComponent } from './components/register-organizatio
 import { ProfileComponent } from './components/profile/profile.component';
 import { ScannerComponent } from './components/scanner/scanner.component';
 import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
+	{
+		path: '',
+		component: HomeComponent
+	},
 	{
 		path: 'login',
 		component: LoginComponent
