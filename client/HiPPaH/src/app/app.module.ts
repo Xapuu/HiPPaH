@@ -12,6 +12,7 @@ import { RegisterUserComponent } from './components/register-user/register-user.
 import { RegisterOrganizationComponent } from './components/register-organization/register-organization.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ScannerComponent } from './components/scanner/scanner.component';
+import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ScannerComponent } from './components/scanner/scanner.component';
 		RegisterUserComponent,
 		RegisterOrganizationComponent,
 		ProfileComponent,
-		ScannerComponent
+		ScannerComponent,
+		ConfirmPaymentComponent
 	],
 	imports: [
 		BrowserModule,

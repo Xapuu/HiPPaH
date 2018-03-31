@@ -5,6 +5,7 @@ import { RegisterUserComponent } from './components/register-user/register-user.
 import { RegisterOrganizationComponent } from './components/register-organization/register-organization.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ScannerComponent } from './components/scanner/scanner.component';
+import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
 
 const routes: Routes = [
 	{
@@ -26,6 +27,14 @@ const routes: Routes = [
 	{
 		path: 'scan',
 		component: ScannerComponent
+	},
+	{
+		path: 'confirm',
+		component: ConfirmPaymentComponent
+	},
+	{
+		path: '**',
+		redirectTo: ''
 	}
 ];
 
