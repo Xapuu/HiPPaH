@@ -4,6 +4,6 @@ const controlers = require('./../../controlers/profile')
 
 const router = express.Router()
 
-router.get('/home', controlers.getProfile)
+router.get('/', controlers.getProfile)
 
 module.exports = router

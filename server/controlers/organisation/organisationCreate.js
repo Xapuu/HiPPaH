@@ -1,34 +1,82 @@
 const User = require('mongoose').model('User')
-const encrypt = require('./../utils/crypto')
-const tokenConfig = require('./../config/token.config')
+const Organisation = require('mongoose').model('Organisation')
+const tokenConfig = require('./../../config/token.config')
+const jwt = require('jwt-simple')
 
-var jwt = require('jwt-simple')
+// TODO split
 
-const validateRequest = (reqProps, body) => {
-  return reqProps.some(x => body[x] === undefined)
-}
-
-const getProfile = (req, res) => {
+const retrieveOrganisations = (req, res) => {
   const token = req.headers.authorization
+  const currentuserId = jwt.decode(
+    token.replace('jwt ', ''),
+    tokenConfig.jwtSecret
+  )
 
-  if (!token) {
+  let organisationId = req.query
+
+  if (organisationId ? organisationId.id : {}) {
+    Organisation.findById(organisationId.id, (err, org) => {
+      if (err) {
+        res.status(404).send(err.message).end()
+        return
+      }
+      res.status(200).json(org).end()
+    })
+  }
+  User.findById(currentuserId).populate('organisations').exec((err, user) => {
+    if (err) {
+      res.status(404).json({ message: err }).end()
+      return
+    }
     res
-      .staus(401)
+      .status(200)
       .json({
-        message: 'You must provide also a token'
+        organisations: user.organisations
       })
       .end()
-    return
-  }
+  })
+}
+
+const createOrganisation = (req, res) => {
+  const token = req.headers.authorization
+  const data = req.body
 
   const currentuserId = jwt.decode(
     token.replace('jwt ', ''),
     tokenConfig.jwtSecret
   )
 
+  User.findById(currentuserId, (err, user) => {
+    Organisation.create({
+      owner: user.id,
+      name: data.organisationName
+    })
+      .then(newOrg => {
+        console.log(user.organisations)
+        user.organisations.push(newOrg.id)
+        user.save()
 
+        res
+          .status(200)
+          .json({ message: 'succesfully created organisation' })
+          .end()
+      })
+      .catch(err => res.status(404).json(err).end())
+  }).catch(err => res.status(404).json({ message: err }).end())
+}
+
+const addTemplate = (req, res) => {
+  const token = req.headers.authorization
+  const data = req.body
+
+  const currentuserId = jwt.decode(
+    token.replace('jwt ', ''),
+    tokenConfig.jwtSecret
+  )
 }
 
 module.exports = {
-  getProfile
+  createOrganisation,
+  addTemplate,
+  retrieveOrganisations
 }

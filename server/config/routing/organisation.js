@@ -1,11 +1,14 @@
 const express = require('express')
 
-const controlers = require('./../../controlers/')
+const controlers = require('./../../controlers/organisation')
 
 const router = express.Router()
 
-// router.post('/login', controlers.login)
 
+router.post('/', controlers.createOrganisation)
 
+router.get('/', controlers.retrieveOrganisations)
+
+router.put('/', controlers.addTemplate)
 
 module.exports = router

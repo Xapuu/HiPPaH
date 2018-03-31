@@ -10,9 +10,10 @@ module.exports = app => {
     res.status(200).send({ message: 'all is good' })
   })
 
-  app.use('/profile', authStrategy.authenticate(), profile)
-  app.use('/organisation', authStrategy.authenticate(), org)
-  app.use('/auth', auth)
+  // TODO protect smart
+  app.use('/api/auth', auth)
+  app.use('/api/profile', authStrategy.authenticate(), profile)
+  app.use('/api/organisation', authStrategy.authenticate(), org)
 
   app.all('*', (req, res) => {
     res.status(404)

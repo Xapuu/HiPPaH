@@ -26,7 +26,7 @@ const getProfile = (req, res) => {
     tokenConfig.jwtSecret
   )
 
-  User.findById(currentuserId, (err, user) => {
+  User.findById(currentuserId).populate('organisations').exec((err, user) => {
     if (err) {
       res.status(404).json({ message: err }).end()
     }

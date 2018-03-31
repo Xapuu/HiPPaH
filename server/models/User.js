@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     default: 0
   },
   organisations: {
-    type: mongoose.SchemaTypes.Array,
+    type: [{ type: mongoose.Schema.ObjectId, ref: 'Organisation' }],
     default: []
   },
   salt: {
