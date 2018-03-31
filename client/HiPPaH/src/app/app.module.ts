@@ -14,6 +14,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ScannerComponent } from './components/scanner/scanner.component';
 import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
 import { HomeComponent } from './components/home/home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { HomeComponent } from './components/home/home.component';
 		ProfileComponent,
 		ScannerComponent,
 		ConfirmPaymentComponent,
-		HomeComponent
+		HomeComponent,
+		NavbarComponent
 	],
 	imports: [
 		BrowserModule,
