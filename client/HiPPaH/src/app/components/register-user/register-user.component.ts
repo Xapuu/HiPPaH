@@ -8,6 +8,7 @@ import {
 	FormGroup,
 	Validators
 } from '@angular/forms';
+import { ControlValueIsEqualTo } from '../../validators/control-value-is-equal-to.validator';
 
 @Component({
 	selector: 'hip-register',
@@ -26,17 +27,27 @@ export class RegisterUserComponent implements OnInit {
 	ngOnInit() {
 		this.email = new FormControl(
 			'',
-			[Validators.required, Validators.email]
+			[
+				Validators.required,
+				Validators.email
+			]
 		);
 
 		this.password = new FormControl(
 			'',
-			[Validators.required, Validators.minLength(8)]
+			[
+				Validators.required,
+				Validators.minLength(8)
+			]
 		);
 
 		this.verifyPassword = new FormControl(
 			'',
-			[Validators.required]
+			[
+				Validators.required,
+				Validators.minLength(8),
+				ControlValueIsEqualTo(this.password)
+			]
 		);
 
 		this.form = new FormGroup({
@@ -48,5 +59,7 @@ export class RegisterUserComponent implements OnInit {
 
 	register() {
 		console.log(this.form.value);
+		console.log('Is form valid? ', this.form.valid);
+		console.log(this.form.errors);
 	}
 }
