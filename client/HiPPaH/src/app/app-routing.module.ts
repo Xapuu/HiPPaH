@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { RegisterOrganizationComponent } from './components/register-organization/register-organization.component';
 
 const routes: Routes = [
 	{
@@ -9,8 +10,12 @@ const routes: Routes = [
 		component: LoginComponent
 	},
 	{
-		path: 'register',
-		component: RegisterComponent
+		path: 'register-user',
+		component: RegisterUserComponent
+	},
+	{
+		path: 'register-organization',
+		component: RegisterOrganizationComponent
 	}
 ];
 
