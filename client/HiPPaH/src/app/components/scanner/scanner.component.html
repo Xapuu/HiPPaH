@@ -2,5 +2,5 @@
     class="test-class"
     [autofocusEnabled]="false"
     [device]="selectedDevice"
-    (camerasFound)="handleFoundCameras($event)"
-    (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
+    (camerasFound)="onCamerasFound($event)"
+    (scanSuccess)="onScanSuccess($event)"></zxing-scanner>
