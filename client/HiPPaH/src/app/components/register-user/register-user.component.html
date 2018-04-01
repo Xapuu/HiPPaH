@@ -5,12 +5,14 @@
 			<div class="card h-100">
 				<div class="card-body">
 					<h2 class="text-center mb-4">USER: Sign-up</h2>
-					<form role="form">
+					<form [formGroup]="form"
+					    role="form">
 						<div class="form-group">
 							<label for="input2EmailForm"
 							    class="sr-only form-control-label">email</label>
 							<div class="mx-auto col-sm-10">
-								<input type="text"
+								<input [formControlName]="'email'"
+								    type="text"
 								    class="form-control"
 								    id="input2EmailForm"
 								    placeholder="email"
@@ -21,7 +23,8 @@
 							<label for="input2PasswordForm"
 							    class="sr-only form-control-label">password</label>
 							<div class="mx-auto col-sm-10">
-								<input type="text"
+								<input [formControlName]="'password'"
+								    type="text"
 								    class="form-control"
 								    id="input2PasswordForm"
 								    placeholder="password"
@@ -32,7 +35,8 @@
 							<label for="input2Password2Form"
 							    class="sr-only form-control-label">verify</label>
 							<div class="mx-auto col-sm-10">
-								<input type="text"
+								<input [formControlName]="'verifyPassword'"
+								    type="text"
 								    class="form-control"
 								    id="input2Password2Form"
 								    placeholder="verify password"
@@ -41,7 +45,8 @@
 						</div>
 						<div class="form-group">
 							<div class="mx-auto col-sm-10 pb-3 pt-2">
-								<button type="submit"
+								<button (click)="register()"
+								    type="submit"
 								    class="btn btn-outline-secondary btn-lg btn-block">Register</button>
 							</div>
 						</div>

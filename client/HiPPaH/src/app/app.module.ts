@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Scanner lib for qr codes.
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -15,6 +16,7 @@ import { ScannerComponent } from './components/scanner/scanner.component';
 import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
 
 
 @NgModule({
@@ -27,11 +29,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 		ScannerComponent,
 		ConfirmPaymentComponent,
 		HomeComponent,
-		NavbarComponent
+		NavbarComponent,
+		TransferMoneyComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
+		ReactiveFormsModule,
 		ZXingScannerModule.forRoot(),
 	],
 	providers: [],
