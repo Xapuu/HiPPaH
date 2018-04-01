@@ -29,6 +29,7 @@ import { TransferMoneyComponent } from './components/transfer-money/transfer-mon
 import { IdentityService } from './services/identity.service';
 import { ProfileService } from './services/profile.service';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { OrganizationService } from './services/organization.service';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 	providers: [
 		IdentityService,
 		ProfileService,
+		OrganizationService,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: TokenInterceptor,
