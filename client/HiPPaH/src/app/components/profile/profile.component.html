@@ -22,7 +22,7 @@
 	Your QR code:
 </h3>
 <div style="margin: 50px;">
-	<qrcode [qrdata]="'Your QR code data string'"
+	<qrcode [qrdata]="baseUrl + '/confirm/' + (profile | async)?.id"
 	    [size]="350"
 	    [level]="'M'"></qrcode>
 </div>

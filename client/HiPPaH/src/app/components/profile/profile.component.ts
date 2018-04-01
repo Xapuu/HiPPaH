@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ProfileService } from '../../services/profile.service';
 import { Observable } from 'rxjs/Observable';
 import { Profile } from '../../models/profile.model';
+import { environment } from '../../../environments/environment';
 import { share } from 'rxjs/operators';
 
 @Component({
@@ -19,6 +20,7 @@ import { share } from 'rxjs/operators';
 export class ProfileComponent implements OnInit, OnDestroy {
 
 	subs: Subscription[] = [];
+	baseUrl = environment.baseUrl;
 
 	profile: Observable<Profile>;
 
