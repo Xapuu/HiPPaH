@@ -4,10 +4,6 @@ const tokenConfig = require('./../config/token.config')
 
 var jwt = require('jwt-simple')
 
-const validateRequest = (reqProps, body) => {
-  return reqProps.some(x => body[x] === undefined)
-}
-
 const getProfile = (req, res) => {
   const token = req.headers.authorization
 
@@ -26,22 +22,23 @@ const getProfile = (req, res) => {
     tokenConfig.jwtSecret
   )
 
-  User.findById(currentuserId).populate('organisations').exec((err, user) => {
-    if (err) {
+  User.findById(currentuserId)
+    .populate('organisations')
+    .then(user => {
+      res
+        .status(200)
+        .json({
+          username: user.username,
+          balance: user.balance,
+          organisations: user.organisations,
+          workPlace: user.workPlace,
+          account: user.account
+        })
+        .end()
+    })
+    .catch(err => {
       res.status(404).json({ message: err }).end()
-    }
-
-    res
-      .status(200)
-      .json({
-        username: user.username,
-        balance: user.balance,
-        organisations: user.organisations,
-        workPlace: user.workPlace,
-        account: user.account
-      })
-      .end()
-  })
+    })
 }
 
 module.exports = {

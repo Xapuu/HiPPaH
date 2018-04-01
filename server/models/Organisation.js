@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+// TODO used also in account model export to common
 const paymentBluePrintSchema = new mongoose.Schema({
   name: {
     type: String

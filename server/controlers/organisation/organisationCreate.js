@@ -15,26 +15,23 @@ const retrieveOrganisations = (req, res) => {
   let organisationId = req.query
 
   if (organisationId ? organisationId.id : {}) {
-    Organisation.findById(organisationId.id, (err, org) => {
-      if (err) {
-        res.status(404).send(err.message).end()
-        return
-      }
+    Organisation.findById(organisationId.id).then(org => {
       res.status(200).json(org).end()
     })
   }
-  User.findById(currentuserId).populate('organisations').exec((err, user) => {
-    if (err) {
+  User.findById(currentuserId)
+    .populate('organisations')
+    .then(user => {
+      res
+        .status(200)
+        .json({
+          organisations: user.organisations
+        })
+        .end()
+    })
+    .catch(err => {
       res.status(404).json({ message: err }).end()
-      return
-    }
-    res
-      .status(200)
-      .json({
-        organisations: user.organisations
-      })
-      .end()
-  })
+    })
 }
 
 const createOrganisation = (req, res) => {
@@ -51,28 +48,30 @@ const createOrganisation = (req, res) => {
     return
   }
 
-  User.findById(currentuserId, (err, user) => {
-    if (err || !user) {
-      res.status(401).json({ message: 'Invalid credentials' }).end()
-      return
-    }
+  User.findById(currentuserId)
+    .then(user => {
+      if (!user) {
+        res.status(401).json({ message: 'Invalid credentials' }).end()
+        return
+      }
 
-    Organisation.create({
-      owner: user.id,
-      name: data.organisationName
-    })
-      .then(newOrg => {
-        console.log(user.organisations)
-        user.organisations.push(newOrg.id)
-        user.save()
-
-        res
-          .status(200)
-          .json({ message: 'succesfully created organisation' })
-          .end()
+      Organisation.create({
+        owner: user.id,
+        name: data.organisationName
       })
-      .catch(err => res.status(404).json(err).end())
-  }).catch(err => res.status(404).json({ message: err }).end())
+        .then(newOrg => {
+          console.log(user.organisations)
+          user.organisations.push(newOrg.id)
+          user.save()
+
+          res
+            .status(200)
+            .json({ message: 'succesfully created organisation' })
+            .end()
+        })
+        .catch(err => res.status(404).json(err).end())
+    })
+    .catch(err => res.status(404).json({ message: err }).end())
 }
 
 module.exports = {

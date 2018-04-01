@@ -97,11 +97,7 @@ const getEmployee = (req, res) => {
 
   Organisation.findById(data.organisationId)
     .populate('workers')
-    .exec((err, organisation) => {
-      if (err) {
-        res.status(404).send(err.message).end()
-      }
-
+    .then(organisation => {
       const idCheck = organisation.owner.toString() !== currentuserId.toString()
       if (idCheck) {
         res.status(401).json({ message: 'Invalid credentials' }).end()
@@ -119,6 +115,9 @@ const getEmployee = (req, res) => {
 
       res.status(200).json(organisation.workers).end()
     })
+    .catch(err => {
+      res.status(404).send(err.message).end()
+    })
 }
 
 const deleteEmployee = (req, res) => {
@@ -129,30 +128,30 @@ const deleteEmployee = (req, res) => {
     tokenConfig.jwtSecret
   )
 
-  Organisation.findById(data.organisationId).exec((err, organisation) => {
-    if (err) {
-      res.status(404).send(err.message).end()
-    }
-
-    const idCheck = organisation.owner.toString() !== currentuserId.toString()
-    if (idCheck) {
-      res.status(401).json({ message: 'Invalid credentials' }).end()
-      return
-    }
-
-    organisation.workers = organisation.workers.filter(
-      x => x === data.employeeId
-    )
-    organisation.save()
-    User.findById(data.employeeId, (err, user) => {
-      if (err) {
-        res.status(404).send(err.message).end()
+  Organisation.findById(data.organisationId)
+    .then(organisation => {
+      const idCheck = organisation.owner.toString() !== currentuserId.toString()
+      if (idCheck) {
+        res.status(401).json({ message: 'Invalid credentials' }).end()
+        return
       }
-      user.workPlace = user.workPlace.filter(x => x === organisation.id)
-      user.save()
-      res.status(200).json({ message: 'Success delete' }).end()
+
+      organisation.workers = organisation.workers.filter(
+        x => x === data.employeeId
+      )
+      organisation.save()
+      User.findById(data.employeeId, (err, user) => {
+        if (err) {
+          res.status(404).send(err.message).end()
+        }
+        user.workPlace = user.workPlace.filter(x => x === organisation.id)
+        user.save()
+        res.status(200).json({ message: 'Success delete' }).end()
+      })
     })
-  })
+    .catch(err => {
+      res.status(404).send(err.message).end()
+    })
 }
 
 module.exports = {

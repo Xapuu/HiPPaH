@@ -43,22 +43,22 @@ const delteBlueprint = (req, res) => {
     tokenConfig.jwtSecret
   )
 
-  Organisation.findById(data.organisationId, (err, organisation) => {
-    if (err) {
+  Organisation.findById(data.organisationId)
+    .then(organisation => {
+      const idCheck = organisation.owner.toString() !== currentuserId.toString()
+      if (idCheck) {
+        res.status(401).json({ message: 'Invalid credentials' }).end()
+        return
+      }
+
+      organisation.soldItemsBlueprint.pull({ _id: data.bluePrintId })
+      organisation.save()
+
+      res.status(200).json({ message: 'Blueprint delete' }).end()
+    })
+    .catch(err => {
       res.status(404).json({ message: err }).end()
-      return
-    }
-    const idCheck = organisation.owner.toString() !== currentuserId.toString()
-    if (idCheck) {
-      res.status(401).json({ message: 'Invalid credentials' }).end()
-      return
-    }
-
-    organisation.soldItemsBlueprint.pull({ _id: data.bluePrintId })
-    organisation.save()
-
-    res.status(200).json({ message: 'Blueprint delete' }).end()
-  })
+    })
 }
 
 const updateBlueprint = (req, res) => {
@@ -70,29 +70,29 @@ const updateBlueprint = (req, res) => {
     tokenConfig.jwtSecret
   )
 
-  Organisation.findById(data.organisationId, (err, organisation) => {
-    if (err) {
+  Organisation.findById(data.organisationId)
+    .then(organisation => {
+      const idCheck = organisation.owner.toString() !== currentuserId.toString()
+      if (idCheck) {
+        res.status(401).json({ message: 'Invalid credentials' }).end()
+        return
+      }
+
+      const bluePrint = {
+        name: data.bluePrintName,
+        price: data.bluePrintPrice
+      }
+
+      organisation.soldItemsBlueprint.pull({ _id: data.bluePrintId })
+      organisation.soldItemsBlueprint.push(bluePrint)
+
+      organisation.save()
+
+      res.status(200).json({ message: 'Blueprint update' }).end()
+    })
+    .catch(err => {
       res.status(404).json({ message: err }).end()
-      return
-    }
-    const idCheck = organisation.owner.toString() !== currentuserId.toString()
-    if (idCheck) {
-      res.status(401).json({ message: 'Invalid credentials' }).end()
-      return
-    }
-
-    const bluePrint = {
-      name: data.bluePrintName,
-      price: data.bluePrintPrice
-    }
-
-    organisation.soldItemsBlueprint.pull({ _id: data.bluePrintId })
-    organisation.soldItemsBlueprint.push(bluePrint)
-
-    organisation.save()
-
-    res.status(200).json({ message: 'Blueprint update' }).end()
-  })
+    })
 }
 
 const retrieveBlueprints = (req, res) => {
@@ -102,18 +102,17 @@ const retrieveBlueprints = (req, res) => {
     token.replace('jwt ', ''),
     tokenConfig.jwtSecret
   )
-  Organisation.findById(data.organisationId, (err, org) => {
-    if (err) {
+  Organisation.findById(data.organisationId)
+    .then(org => {
+      let responsePayload = data.blueprintId
+        ? org.soldItemsBlueprint.find(x => x.id === data.blueprintId)
+        : org.soldItemsBlueprint
+
+      res.status(200).json(responsePayload).end()
+    })
+    .catch(err => {
       res.status(404).send(err.message).end()
-      return
-    }
-
-    let responsePayload = data.blueprintId
-      ? org.soldItemsBlueprint.find(x => x.id === data.blueprintId)
-      : org.soldItemsBlueprint
-
-    res.status(200).json(responsePayload).end()
-  })
+    })
 }
 
 module.exports = {
