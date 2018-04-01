@@ -1,35 +1,69 @@
 <!-- <ol> -->
-<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
-<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
-<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
-<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
-<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
-<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
-<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
-<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
-<!-- </ol> -->
+	<!--	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+	<!--	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+	<!--	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+	<!--	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+	<!--	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+	<!--	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+	<!--	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+	<!--	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+	<!-- </ol> -->
 
 <ol class="list-group">
 	<li class="list-group-item">
-		Pizza: 4x$9.99 <button class="btn btn-success btn-xs">On me!</button>
+		Pizza: 4x$9.99
+		<div class="form-check">
+			<input type="checkbox"
+			class="form-check-input"
+			id="exampleCheck1">
+			<label class="form-check-label"
+				for="exampleCheck1">On me!</label>
+		</div>
 	</li>
 	<li class="list-group-item">
-		Rakia: 26x$3.50 <button class="btn btn-success btn-xs">On me!</button>
+		Rakia: 26x$3.50
+		<div class="form-check">
+			<input type="checkbox"
+			class="form-check-input"
+			id="exampleCheck1">
+			<label class="form-check-label"
+				for="exampleCheck1">On me!</label>
+		</div>
 	</li>
 	<li class="list-group-item">
-		Diuner: 4x$3.99 <button class="btn btn-success btn-xs">On me!</button>
+		Diuner: 4x$3.99
+		<div class="form-check">
+			<input type="checkbox"
+			class="form-check-input"
+			id="exampleCheck1">
+			<label class="form-check-label"
+				for="exampleCheck1">On me!</label>
+		</div>
 	</li>
 	<li class="list-group-item">
-		Limonada: 6x$10.99 <button class="btn btn-success btn-xs">On me!</button>
+		Limonada: 6x$10.99
+		<div class="form-check">
+			<input type="checkbox"
+			class="form-check-input"
+			id="exampleCheck1">
+			<label class="form-check-label"
+				for="exampleCheck1">On me!</label>
+		</div>
 	</li>
 	<li class="list-group-item">
-		Beer: 2x$0.99 <button class="btn btn-success btn-xs">On me!</button>
+		Beer: 2x$0.99
+		<div class="form-check">
+			<input type="checkbox"
+			class="form-check-input"
+			id="exampleCheck1">
+			<label class="form-check-label"
+				for="exampleCheck1">On me!</label>
+		</div>
 	</li>
 </ol>
 
 <button class="btn btn-success btn-lg">Pay for everyting</button>
-<hr>
-Pay <span ngNonBindable>{{ money }}</span> to {{ (organization | async)?.name }}?
+<hr> Pay <span ngNonBindable>{{ money }}</span> to {{ (organization | async)?.name }}?
 
 <button>Yes</button>
 <button>No</button>
