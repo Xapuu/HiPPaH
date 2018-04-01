@@ -21,19 +21,16 @@
 <h3>
 	Your QR code:
 </h3>
-<img src="http://via.placeholder.com/350x350"/>
+<div style="margin: 50px;">
+	<qrcode [qrdata]="'Your QR code data string'"
+	    [size]="350"
+	    [level]="'M'"></qrcode>
+</div>
 
 <ol>
-	<li>Profile name</li>
-	<li>Balance</li>
-	<li>Organizatons list
-		<ol>
-			<li>org1 - owner</li>
-			<li>org2 - owner</li>
-			<li>org3 - member - click to set bill of a table</li>
-			<li>org4 - owner - click to add/remove/invite people, set bill of a table, set product and prices</li>
-			<li>org5 - member</li>
-		</ol>
-	</li>
-	<li>QR Code with profile id</li>
+	<li>org1 - owner</li>
+	<li>org2 - owner</li>
+	<li>org3 - member - click to set bill of a table</li>
+	<li>org4 - owner - click to add/remove/invite people, set bill of a table, set product and prices</li>
+	<li>org5 - member</li>
 </ol>

@@ -12,6 +12,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { CookieModule } from 'ngx-cookie';
 
+import { QRCodeModule  } from 'angularx-qrcode';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -46,6 +48,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 		BrowserModule,
 		CommonModule,
 		CookieModule.forRoot(),
+		QRCodeModule,
 		HttpClientModule,
 		AppRoutingModule,
 		ReactiveFormsModule,
