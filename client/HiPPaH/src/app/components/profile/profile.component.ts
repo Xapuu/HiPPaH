@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ProfileService } from '../../services/profile.service';
 import { Observable } from 'rxjs/Observable';
 import { Profile } from '../../models/profile.model';
+import { share } from 'rxjs/operators';
 
 @Component({
 	selector: 'hip-profile',
@@ -24,7 +25,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
 	constructor(private profileService: ProfileService) { }
 
 	ngOnInit() {
-		this.profile = this.profileService.getProfile();
+		this.profile = this.profileService.getProfile()
+			.pipe(
+				// Do not make separate call for each async pipe.
+				share()
+			);
 		// this.subs.push(
 		// 	this.profileService.getProfile().subscribe(console.log)
 		// );
