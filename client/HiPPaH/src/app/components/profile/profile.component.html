@@ -13,7 +13,9 @@
 </h3>
 <ul>
 	<li *ngFor="let organization of (profile | async)?.organisations?.ownerOf">
-		{{ organization.name }}
+		<a [routerLink]="'/confirm/' + organization._id">
+			{{ organization.name }}
+		</a>
 	</li>
 </ul>
 
@@ -25,7 +27,6 @@
 	    [size]="350"
 	    [level]="'M'"></qrcode>
 </div>
-
 <ol>
 	<li>org1 - owner</li>
 	<li>org2 - owner</li>

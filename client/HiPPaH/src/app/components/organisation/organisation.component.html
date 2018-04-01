@@ -1,0 +1,15 @@
+<h1>
+	Name: {{ (organisation | async)?.name }}
+</h1>
+<h3>
+	Balance: {{ (organisation | async)?.balance }}
+</h3>
+Hardcoded items: QRCode:
+<div style="margin: 50px;">
+	<qrcode [qrdata]="baseUrl + '/confirm/' + (organisation | async)?._id"
+	    [size]="350"
+	    [level]="'M'"></qrcode>
+</div>
+<pre>
+{{ organisation | async | json }}
+</pre>

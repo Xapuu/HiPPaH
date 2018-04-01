@@ -30,6 +30,7 @@ import { IdentityService } from './services/identity.service';
 import { ProfileService } from './services/profile.service';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { OrganizationService } from './services/organization.service';
+import { OrganisationComponent } from './components/organisation/organisation.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { OrganizationService } from './services/organization.service';
 		ConfirmPaymentComponent,
 		HomeComponent,
 		NavbarComponent,
-		TransferMoneyComponent
+		TransferMoneyComponent,
+		OrganisationComponent
 	],
 	imports: [
 		BrowserModule,

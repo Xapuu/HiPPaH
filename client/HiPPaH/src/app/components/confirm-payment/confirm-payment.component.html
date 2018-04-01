@@ -1,15 +1,35 @@
-<ol>
-	<li ngNonBindable>{{ item }} - {{ price }}</li>
-	<li ngNonBindable>{{ item }} - {{ price }}</li>
-	<li ngNonBindable>{{ item }} - {{ price }}</li>
-	<li ngNonBindable>{{ item }} - {{ price }}</li>
-	<li ngNonBindable>{{ item }} - {{ price }}</li>
-	<li ngNonBindable>{{ item }} - {{ price }}</li>
-	<li ngNonBindable>{{ item }} - {{ price }}</li>
-	<li ngNonBindable>{{ item }} - {{ price }}</li>
+<!-- <ol> -->
+<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+<!-- 	<li ngNonBindable>{{ item }} &#45; {{ price }}</li> -->
+<!-- </ol> -->
+
+<ol class="list-group">
+	<li class="list-group-item">
+		Pizza: 4x$9.99 <button class="btn btn-success btn-xs">On me!</button>
+	</li>
+	<li class="list-group-item">
+		Rakia: 26x$3.50 <button class="btn btn-success btn-xs">On me!</button>
+	</li>
+	<li class="list-group-item">
+		Diuner: 4x$3.99 <button class="btn btn-success btn-xs">On me!</button>
+	</li>
+	<li class="list-group-item">
+		Limonada: 6x$10.99 <button class="btn btn-success btn-xs">On me!</button>
+	</li>
+	<li class="list-group-item">
+		Beer: 2x$0.99 <button class="btn btn-success btn-xs">On me!</button>
+	</li>
 </ol>
 
-Pay <span ngNonBindable>{{ money }}</span> to <span ngNonBindable>{{ organization }}</span>?
+<button class="btn btn-success btn-lg">Pay for everyting</button>
+<hr>
+Pay <span ngNonBindable>{{ money }}</span> to {{ (organization | async)?.name }}?
 
 <button>Yes</button>
 <button>No</button>

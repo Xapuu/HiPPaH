@@ -13,4 +13,8 @@ export class OrganizationService {
 	register(organization: CreateOrganization) {
 		return this.http.post(`${this.baseUrl}/api/organisation`, organization);
 	}
+
+	getByid(id: string) {
+		return this.http.get(`${this.baseUrl}/api/organisation?id=${id}`);
+	}
 }

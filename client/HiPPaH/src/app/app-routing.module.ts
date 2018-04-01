@@ -8,6 +8,7 @@ import { ScannerComponent } from './components/scanner/scanner.component';
 import { ConfirmPaymentComponent } from './components/confirm-payment/confirm-payment.component';
 import { HomeComponent } from './components/home/home.component';
 import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
+import { OrganisationComponent } from './components/organisation/organisation.component';
 
 const routes: Routes = [
 	{
@@ -31,6 +32,10 @@ const routes: Routes = [
 		component: ProfileComponent
 	},
 	{
+		path: 'organisation/:id',
+		component: OrganisationComponent
+	},
+	{
 		path: 'scan',
 		component: ScannerComponent
 	},
@@ -39,7 +44,7 @@ const routes: Routes = [
 		component: TransferMoneyComponent
 	},
 	{
-		path: 'confirm/:organizationId/:accountId',
+		path: 'confirm/:organizationId',
 		component: ConfirmPaymentComponent
 	},
 	{
