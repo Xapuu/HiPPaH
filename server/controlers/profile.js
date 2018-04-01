@@ -27,6 +27,7 @@ const getProfile = (req, res) => {
       res
         .status(200)
         .json({
+          id:user._id,
           username: user.username,
           balance: user.balance,
           organisations: {
