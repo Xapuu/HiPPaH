@@ -16,6 +16,7 @@ module.exports = app => {
   app.use('/api/profile', authStrategy.authenticate(), profile)
   app.use('/api/organisation', authStrategy.authenticate(), org)
   app.use('/api/payment', authStrategy.authenticate(), userToUser)
+  // app.use('/app/purchase', )
 
   app.all('*', (req, res) => {
     res.status(404)

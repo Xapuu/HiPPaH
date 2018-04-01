@@ -14,6 +14,49 @@ const paymentBluePrintSchema = new mongoose.Schema({
   }
 })
 
+const staticTabSchema = new mongoose.Schema({
+  id: {
+    type: mongoose.SchemaTypes.ObjectId,
+    default: mongoose.Types.ObjectId()
+  },
+  name: {
+    type: mongoose.SchemaTypes.String
+  },
+  status: {
+    type: mongoose.SchemaTypes.Boolean,
+    default: false
+  }
+})
+
+const userToOrganisationTransactionSchema = new mongoose.Schema({
+  payer: {
+    type: mongoose.Schema.Types.ObjectId
+  },
+  reciever: {
+    type: mongoose.Schema.Types.ObjectId
+  },
+  limit: {
+    type: mongoose.SchemaTypes.Number,
+    default: 0
+  },
+  total: {
+    type: mongoose.SchemaTypes.Number,
+    default: 0
+  },
+  dateStamp: {
+    type: mongoose.SchemaTypes.Date,
+    default: Date.now
+  },
+  itemsOnTab: {
+    type: [paymentBluePrintSchema],
+    default: []
+  },
+  isOpen: {
+    type: mongoose.Schema.Types.Boolean,
+    default: true
+  }
+})
+
 const pendingInvitation = new mongoose.Schema({
   key: {
     type: mongoose.SchemaTypes.ObjectId,
@@ -47,6 +90,18 @@ const organisationSchema = new mongoose.Schema({
   },
   pendingInvitations: {
     type: [pendingInvitation],
+    default: []
+  },
+  staticAccounts: {
+    type: [staticTabSchema],
+    default: []
+  },
+  income: {
+    type: [userToOrganisationTransactionSchema],
+    default: []
+  },
+  expenditure: {
+    type: [userToOrganisationTransactionSchema],
     default: []
   },
   soldItemsBlueprint: {
