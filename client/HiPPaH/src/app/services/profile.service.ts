@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Profile } from '../models/profile.model';
 
 @Injectable()
 export class ProfileService {
@@ -10,6 +11,6 @@ export class ProfileService {
 	constructor(private http: HttpClient) { }
 
 	getProfile() {
-		return this.http.get(`${this.baseUrl}/api/profile`);
+		return this.http.get<Profile>(`${this.baseUrl}/api/profile`);
 	}
 }
