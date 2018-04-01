@@ -22,6 +22,13 @@ export class IdentityService {
 			);
 	}
 
+	login(user) {
+		return this.http.post(`${this.baseUrl}/api/auth/login`, user)
+			.pipe(
+				tap((token: {token: string}) => this.saveCookies(token))
+			);
+	}
+
 	private saveCookies(token: { token: string }) {
 		this.cookieService.put('token', token.token);
 	}
