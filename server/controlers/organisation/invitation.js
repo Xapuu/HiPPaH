@@ -143,6 +143,7 @@ const deleteEmployee = (req, res) => {
       User.findById(data.employeeId, (err, user) => {
         if (err) {
           res.status(404).send(err.message).end()
+          return
         }
         user.workPlace = user.workPlace.filter(x => x === organisation.id)
         user.save()

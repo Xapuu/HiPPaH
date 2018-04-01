@@ -1,5 +1,4 @@
 const User = require('mongoose').model('User')
-const encrypt = require('./../utils/crypto')
 const tokenConfig = require('./../config/token.config')
 
 var jwt = require('jwt-simple')

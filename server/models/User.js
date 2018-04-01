@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     default: 0
   },
   income: {
-    type: mongoose.SchemaTypes.ObjectId,
+    type: [userToUserTransactionSchema],
     default: []
   },
   expenditure: {

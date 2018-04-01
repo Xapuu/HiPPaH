@@ -15,9 +15,14 @@ const retrieveOrganisations = (req, res) => {
   let organisationId = req.query
 
   if (organisationId ? organisationId.id : {}) {
-    Organisation.findById(organisationId.id).then(org => {
-      res.status(200).json(org).end()
-    })
+    Organisation.findById(organisationId.id)
+      .then(org => {
+        res.status(200).json(org).end()
+      })
+      .catch(err => {
+        res.status(404).json({ message: err }).end()
+      })
+    return
   }
   User.findById(currentuserId)
     .populate('organisations')
