@@ -15,10 +15,6 @@ const paymentBluePrintSchema = new mongoose.Schema({
 })
 
 const staticTabSchema = new mongoose.Schema({
-  id: {
-    type: mongoose.SchemaTypes.ObjectId,
-    default: mongoose.Types.ObjectId()
-  },
   name: {
     type: mongoose.SchemaTypes.String
   },
