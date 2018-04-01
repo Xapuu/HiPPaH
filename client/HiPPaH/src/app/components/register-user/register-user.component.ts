@@ -60,6 +60,5 @@ export class RegisterUserComponent implements OnInit {
 	register() {
 		console.log(this.form.value);
 		console.log('Is form valid? ', this.form.valid);
-		console.log(this.form.errors);
 	}
 }
