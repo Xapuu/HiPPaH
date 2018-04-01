@@ -8,7 +8,11 @@ import {
 	FormGroup,
 	Validators
 } from '@angular/forms';
+
+import { tap } from 'rxjs/operators';
+
 import { ControlValueIsEqualTo } from '../../validators/control-value-is-equal-to.validator';
+import { IdentityService } from '../../services/identity.service';
 
 @Component({
 	selector: 'hip-register',
@@ -59,5 +63,7 @@ export class RegisterUserComponent implements OnInit {
 	register() {
 		console.log(this.form.value);
 		console.log('Is form valid? ', this.form.valid);
+		this.identityService.register(this.form.value)
+			.subscribe(console.log);
 	}
 }
