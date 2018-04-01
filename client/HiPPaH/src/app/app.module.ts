@@ -24,6 +24,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
 import { IdentityService } from './services/identity.service';
+import { ProfileService } from './services/profile.service';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
 
@@ -50,6 +51,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 	],
 	providers: [
 		IdentityService,
+		ProfileService,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: TokenInterceptor,

@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
-  selector: 'hip-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+	selector: 'hip-profile',
+	templateUrl: './profile.component.html',
+	styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+	constructor(private profileService: ProfileService) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+		this.profileService.getProfile().subscribe(console.log);
+	}
 
 }
