@@ -18,18 +18,17 @@ import { ControlValueIsEqualTo } from '../../validators/control-value-is-equal-t
 export class RegisterUserComponent implements OnInit {
 
 	form: FormGroup;
-	email: FormControl;
+	username: FormControl;
 	password: FormControl;
-	verifyPassword: FormControl;
+	confirmPassword: FormControl;
 
-	constructor() { }
+	constructor(private identityService: IdentityService) { }
 
 	ngOnInit() {
-		this.email = new FormControl(
+		this.username = new FormControl(
 			'',
 			[
 				Validators.required,
-				Validators.email
 			]
 		);
 
@@ -41,7 +40,7 @@ export class RegisterUserComponent implements OnInit {
 			]
 		);
 
-		this.verifyPassword = new FormControl(
+		this.confirmPassword = new FormControl(
 			'',
 			[
 				Validators.required,
@@ -51,9 +50,9 @@ export class RegisterUserComponent implements OnInit {
 		);
 
 		this.form = new FormGroup({
-			email: this.email,
+			username: this.username,
 			password: this.password,
-			verifyPassword: this.verifyPassword
+			confirmPassword: this.confirmPassword
 		});
 	}
 
