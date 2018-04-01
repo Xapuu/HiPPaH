@@ -56,6 +56,14 @@ const deleteStaticAccount = (req, res) => {
       return
     }
 
+    if (!data.staticAccountId) {
+      res
+        .status(404)
+        .send({ message: 'Please provide static account Id' })
+        .end()
+      return
+    }
+
     const idCheck = organisation.owner.toString() !== currentuserId.toString()
     if (idCheck) {
       res.status(401).json({ message: 'Invalid credentials' }).end()
@@ -66,7 +74,7 @@ const deleteStaticAccount = (req, res) => {
       _id: data.staticAccountId
     })
     organisation.save()
-    res.status(200).json({ message: 'Static account create' }).end()
+    res.status(200).json({ message: 'Static account deleted' }).end()
   })
 }
 

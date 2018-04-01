@@ -31,7 +31,9 @@ const getProfile = (req, res) => {
           balance: user.balance,
           organisations: user.organisations,
           workPlace: user.workPlace,
-          account: user.account
+          account: user.account,
+          income: user.income,
+          expenditure: user.expenditure
         })
         .end()
     })
