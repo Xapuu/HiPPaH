@@ -36,7 +36,9 @@ const getProfile = (req, res) => {
       .json({
         username: user.username,
         balance: user.balance,
-        organisations: user.organisations
+        organisations: user.organisations,
+        workPlace: user.workPlace,
+        account: user.account
       })
       .end()
   })

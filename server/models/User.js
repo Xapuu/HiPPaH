@@ -11,7 +11,15 @@ const userSchema = new mongoose.Schema({
     type: mongoose.SchemaTypes.Number,
     default: 0
   },
+  account: {
+    type: mongoose.SchemaTypes.ObjectId,
+    default: mongoose.Types.ObjectId()
+  },
   organisations: {
+    type: [{ type: mongoose.Schema.ObjectId, ref: 'Organisation' }],
+    default: []
+  },
+  workPlace: {
     type: [{ type: mongoose.Schema.ObjectId, ref: 'Organisation' }],
     default: []
   },
@@ -27,7 +35,7 @@ userSchema.methods.authenticate = password =>
   this.hashedPass === encrypt.generateHashedPassword(this.salt, password)
 
 userSchema.pre('save', function () {
-  this.salt = encrypt.generateSalt()
+
   this.hashedPass = encrypt.generateHashedPassword(this.salt, this.hashedPass)
 })
 

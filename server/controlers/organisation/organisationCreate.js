@@ -46,7 +46,17 @@ const createOrganisation = (req, res) => {
     tokenConfig.jwtSecret
   )
 
+  if (!currentuserId) {
+    res.status(401).json({ message: 'Invalid credentials' }).end()
+    return
+  }
+
   User.findById(currentuserId, (err, user) => {
+    if (err || !user) {
+      res.status(401).json({ message: 'Invalid credentials' }).end()
+      return
+    }
+
     Organisation.create({
       owner: user.id,
       name: data.organisationName
@@ -65,18 +75,7 @@ const createOrganisation = (req, res) => {
   }).catch(err => res.status(404).json({ message: err }).end())
 }
 
-const addTemplate = (req, res) => {
-  const token = req.headers.authorization
-  const data = req.body
-
-  const currentuserId = jwt.decode(
-    token.replace('jwt ', ''),
-    tokenConfig.jwtSecret
-  )
-}
-
 module.exports = {
   createOrganisation,
-  addTemplate,
   retrieveOrganisations
 }
