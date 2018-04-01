@@ -4,7 +4,7 @@
 	You are member of these organizations:
 </h3>
 <ul>
-	<li *ngFor="let organization of (profile | async)?.organizations?.memberOf">
+	<li *ngFor="let organization of (profile | async)?.organisations?.memberOf">
 		{{ organization }}
 	</li>
 </ul>
@@ -12,8 +12,8 @@
 	You own these organizations:
 </h3>
 <ul>
-	<li *ngFor="let organization of (profile | async)?.organizations?.ownerOf">
-		{{ organization }}
+	<li *ngFor="let organization of (profile | async)?.organisations?.ownerOf">
+		{{ organization.name }}
 	</li>
 </ul>
 

@@ -11,6 +11,6 @@ export class OrganizationService {
 	constructor(private http: HttpClient) { }
 
 	register(organization: CreateOrganization) {
-		return this.http.post(`${this.baseUrl}/api/organization`, organization);
+		return this.http.post(`${this.baseUrl}/api/organisation`, organization);
 	}
 }

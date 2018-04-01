@@ -19,20 +19,20 @@ import { Subscription } from 'rxjs/Subscription';
 export class RegisterOrganizationComponent implements OnInit, OnDestroy {
 
 	form: FormGroup;
-	organizationName: FormControl;
+	organisationName: FormControl;
 
 	subs: Subscription[] = [];
 
 	constructor(private organizationService: OrganizationService) { }
 
 	ngOnInit() {
-		this.organizationName = new FormControl(
+		this.organisationName = new FormControl(
 			'',
 			[Validators.required, Validators.minLength(3)]
 		);
 
 		this.form = new FormGroup({
-			organizationName: this.organizationName
+			organisationName: this.organisationName
 		});
 	}
 
