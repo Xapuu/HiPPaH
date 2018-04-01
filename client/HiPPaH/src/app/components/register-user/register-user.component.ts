@@ -1,6 +1,7 @@
 import {
 	Component,
-	OnInit
+	OnInit,
+	OnDestroy
 } from '@angular/core';
 
 import {
@@ -8,28 +9,34 @@ import {
 	FormGroup,
 	Validators
 } from '@angular/forms';
+
+import { tap } from 'rxjs/operators';
+
 import { ControlValueIsEqualTo } from '../../validators/control-value-is-equal-to.validator';
+import { IdentityService } from '../../services/identity.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
 	selector: 'hip-register',
 	templateUrl: './register-user.component.html',
 	styleUrls: ['./register-user.component.scss']
 })
-export class RegisterUserComponent implements OnInit {
+export class RegisterUserComponent implements OnInit, OnDestroy {
 
 	form: FormGroup;
-	email: FormControl;
+	username: FormControl;
 	password: FormControl;
-	verifyPassword: FormControl;
+	confirmPassword: FormControl;
 
-	constructor() { }
+	subs: Subscription[] = [];
+
+	constructor(private identityService: IdentityService) { }
 
 	ngOnInit() {
-		this.email = new FormControl(
+		this.username = new FormControl(
 			'',
 			[
 				Validators.required,
-				Validators.email
 			]
 		);
 
@@ -41,7 +48,7 @@ export class RegisterUserComponent implements OnInit {
 			]
 		);
 
-		this.verifyPassword = new FormControl(
+		this.confirmPassword = new FormControl(
 			'',
 			[
 				Validators.required,
@@ -51,14 +58,22 @@ export class RegisterUserComponent implements OnInit {
 		);
 
 		this.form = new FormGroup({
-			email: this.email,
+			username: this.username,
 			password: this.password,
-			verifyPassword: this.verifyPassword
+			confirmPassword: this.confirmPassword
 		});
 	}
 
 	register() {
 		console.log(this.form.value);
 		console.log('Is form valid? ', this.form.valid);
+		this.subs.push(
+			this.identityService.register(this.form.value)
+				.subscribe(console.log)
+		);
+	}
+
+	ngOnDestroy() {
+		this.subs.forEach(sub => sub.unsubscribe());
 	}
 }

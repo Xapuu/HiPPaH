@@ -9,6 +9,10 @@ import {
 	Validators
 } from '@angular/forms';
 
+import { Subscription } from 'rxjs/Subscription';
+
+import { IdentityService } from '../../services/identity.service';
+
 @Component({
 	selector: 'hip-login',
 	templateUrl: './login.component.html',
@@ -17,15 +21,17 @@ import {
 export class LoginComponent implements OnInit {
 
 	form: FormGroup;
-	email: FormControl;
+	username: FormControl;
 	password: FormControl;
 
-	constructor() { }
+	subs: Subscription[] = [];
+
+	constructor(private identityService: IdentityService) { }
 
 	ngOnInit() {
-		this.email = new FormControl(
+		this.username = new FormControl(
 			'',
-			[Validators.required, Validators.email]
+			[Validators.required]
 		);
 
 		this.password = new FormControl(
@@ -34,7 +40,7 @@ export class LoginComponent implements OnInit {
 		);
 
 		this.form = new FormGroup({
-			email: this.email,
+			username: this.username,
 			password: this.password
 		});
 	}
@@ -42,6 +48,10 @@ export class LoginComponent implements OnInit {
 	login() {
 		console.log(this.form.value);
 		console.log('Is form valid? ', this.form.valid);
+		this.subs.push(
+			this.identityService.login(this.form.value)
+				.subscribe(console.log)
+		);
 	}
 
 }
