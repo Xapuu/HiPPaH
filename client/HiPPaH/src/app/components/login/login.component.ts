@@ -17,15 +17,15 @@ import {
 export class LoginComponent implements OnInit {
 
 	form: FormGroup;
-	email: FormControl;
+	username: FormControl;
 	password: FormControl;
 
 	constructor() { }
 
 	ngOnInit() {
-		this.email = new FormControl(
+		this.username = new FormControl(
 			'',
-			[Validators.required, Validators.email]
+			[Validators.required]
 		);
 
 		this.password = new FormControl(
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 		);
 
 		this.form = new FormGroup({
-			email: this.email,
+			username: this.username,
 			password: this.password
 		});
 	}
