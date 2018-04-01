@@ -8,7 +8,6 @@ router.post('/', controlers.userToOrganisationOpenAccount)
 
 router.post('/close', controlers.userToOrganisationCloseAccount)
 
-
-router.post('/')
+router.post('/addItem', controlers.userToOrganisationAddItemToAccount)
 
 module.exports = router
