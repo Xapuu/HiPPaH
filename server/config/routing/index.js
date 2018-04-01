@@ -4,6 +4,7 @@ const auth = require('./authenticaition')
 const org = require('./organisation')
 const profile = require('./userProfile')
 const userToUser = require('./userToUserTransaction')
+const userToOrganisation = require('./userToOrganisation')
 
 module.exports = app => {
   app.use(express.static('public'))
@@ -16,7 +17,7 @@ module.exports = app => {
   app.use('/api/profile', authStrategy.authenticate(), profile)
   app.use('/api/organisation', authStrategy.authenticate(), org)
   app.use('/api/payment', authStrategy.authenticate(), userToUser)
-  // app.use('/app/purchase', )
+  app.use('/api/purchase', authStrategy.authenticate(), userToOrganisation)
 
   app.all('*', (req, res) => {
     res.status(404)

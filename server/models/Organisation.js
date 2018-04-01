@@ -21,6 +21,9 @@ const staticTabSchema = new mongoose.Schema({
   status: {
     type: mongoose.SchemaTypes.Boolean,
     default: false
+  },
+  connectId: {
+    type: mongoose.SchemaTypes.ObjectId
   }
 })
 
@@ -46,6 +49,9 @@ const userToOrganisationTransactionSchema = new mongoose.Schema({
   itemsOnTab: {
     type: [paymentBluePrintSchema],
     default: []
+  },
+  connectId: {
+    type: mongoose.SchemaTypes.ObjectId
   },
   isOpen: {
     type: mongoose.Schema.Types.Boolean,

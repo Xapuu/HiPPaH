@@ -6,4 +6,9 @@ const router = express.Router()
 
 router.post('/', controlers.userToOrganisationOpenAccount)
 
+router.post('/close', controlers.userToOrganisationCloseAccount)
+
+
+router.post('/')
+
 module.exports = router

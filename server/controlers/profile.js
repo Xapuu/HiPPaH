@@ -29,8 +29,10 @@ const getProfile = (req, res) => {
         .json({
           username: user.username,
           balance: user.balance,
-          organisations: user.organisations,
-          workPlace: user.workPlace,
+          organisations: {
+            ownerOf: user.organisations,
+            memberOf: user.workPlace
+          },
           account: user.account,
           income: user.income,
           expenditure: user.expenditure
