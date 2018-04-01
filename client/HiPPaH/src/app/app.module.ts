@@ -5,6 +5,7 @@ import {
 	HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 // Scanner lib for qr codes.
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -43,6 +44,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 	],
 	imports: [
 		BrowserModule,
+		CommonModule,
 		CookieModule.forRoot(),
 		HttpClientModule,
 		AppRoutingModule,
