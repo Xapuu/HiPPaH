@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {
+	HttpClientModule,
+	HTTP_INTERCEPTORS
+} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // Scanner lib for qr codes.
@@ -21,6 +24,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TransferMoneyComponent } from './components/transfer-money/transfer-money.component';
 import { IdentityService } from './services/identity.service';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 
 @NgModule({
@@ -45,7 +49,12 @@ import { IdentityService } from './services/identity.service';
 		ZXingScannerModule.forRoot(),
 	],
 	providers: [
-		IdentityService
+		IdentityService,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: TokenInterceptor,
+			multi: true
+		}
 	],
 	bootstrap: [AppComponent]
 })
