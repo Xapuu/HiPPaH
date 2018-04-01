@@ -1,3 +1,5 @@
 module.exports = {
-  ...require('./organisationCreate')
+  ...require('./organisationCreate'),
+  ...require('./bluePrint'),
+  ...require('./invitation')
 }

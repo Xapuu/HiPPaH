@@ -40,32 +40,32 @@ const register = (req, res) => {
 }
 
 const login = (req, res) => {
-  User.findOne({ username: req.body.username }, (err, user) => {
-    if (err) {
-      res.status(404).json({ message: err }).end()
-      return
-    }
+  User.findOne({ username: req.body.username })
+    .then(user => {
 
-    if (!user) {
-      res.status(200).send({ message: 'No such user' }).end()
-      return
-    }
+      if (!user) {
+        res.status(200).send({ message: 'No such user' }).end()
+        return
+      }
 
-    if (
-      encrypt.generateHashedPassword(user.salt, req.body.password) !==
-      user.hashedPass
-    ) {
-      res.status(404).send('Password dosent match').end()
-      return
-    }
-    const token = jwt.encode(user.id, tokenConfig.jwtSecret)
+      if (
+        encrypt.generateHashedPassword(user.salt, req.body.password) !==
+        user.hashedPass
+      ) {
+        res.status(404).send('Password dosent match').end()
+        return
+      }
+      const token = jwt.encode(user.id, tokenConfig.jwtSecret)
 
-    res.json({
-      token
+      res.json({
+        token
+      })
+
+      res.end()
     })
-
-    res.end()
-  })
+    .catch(err => {
+      res.status(404).json({ message: err }).end()
+    })
 }
 
 const demo = (req, res) => {

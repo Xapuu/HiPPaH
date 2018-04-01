@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const encrypt = require('./../utils/crypto')
 
+const userToUserTransactionSchema = './commonShemas'
+
 const userSchema = new mongoose.Schema({
   username: {
     type: mongoose.Schema.Types.String,
@@ -11,7 +13,19 @@ const userSchema = new mongoose.Schema({
     type: mongoose.SchemaTypes.Number,
     default: 0
   },
+  income: {
+    type: [userToUserTransactionSchema],
+    default: []
+  },
+  expenditure: {
+    type: [userToUserTransactionSchema],
+    default: []
+  },
   organisations: {
+    type: [{ type: mongoose.Schema.ObjectId, ref: 'Organisation' }],
+    default: []
+  },
+  workPlace: {
     type: [{ type: mongoose.Schema.ObjectId, ref: 'Organisation' }],
     default: []
   },
@@ -27,7 +41,6 @@ userSchema.methods.authenticate = password =>
   this.hashedPass === encrypt.generateHashedPassword(this.salt, password)
 
 userSchema.pre('save', function () {
-  this.salt = encrypt.generateSalt()
   this.hashedPass = encrypt.generateHashedPassword(this.salt, this.hashedPass)
 })
 
