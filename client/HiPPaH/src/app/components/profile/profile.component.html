@@ -1,3 +1,28 @@
+<pre>{{ profile | async | json }}</pre>
+<h1>Username: {{ (profile | async)?.username }}</h1>
+<h2>Balance ${{ (profile | async)?.balance }}</h2>
+<h3>
+	You are member of these organizations:
+</h3>
+<ul>
+	<li *ngFor="let organization of (profile | async)?.organizations?.memberOf">
+		{{ organization }}
+	</li>
+</ul>
+<h3>
+	You own these organizations:
+</h3>
+<ul>
+	<li *ngFor="let organization of (profile | async)?.organizations?.ownerOf">
+		{{ organization }}
+	</li>
+</ul>
+
+<h3>
+	Your QR code:
+</h3>
+<img src="http://via.placeholder.com/350x350"/>
+
 <ol>
 	<li>Profile name</li>
 	<li>Balance</li>
